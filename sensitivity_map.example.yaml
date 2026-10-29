@@ -1,0 +1,25 @@
+# Sensitivity boundary path-rule defaults (ADR 0036, D2).
+#
+# Two classes only: "open" (cloud + local can retrieve) and "restricted"
+# (local clearance only). This file assigns defaults for notes that do not
+# declare their own `sensitivity:` frontmatter field — frontmatter always
+# wins over these path rules.
+#
+# Rules are evaluated in order; the FIRST matching pattern wins. Anything
+# that matches no rule here and has no frontmatter field defaults to "open"
+# (D2: default-restricted-for-unmapped was rejected — it would blank cloud
+# retrieval until a full manual backfill).
+#
+# Copy this file to the path in your config.yaml's `sensitivity_map_path`
+# (default: ~/.vault-context-mcp/sensitivity_map.yaml) and edit the patterns
+# to match your own vault's personal/sensitive zones. This example uses
+# generic placeholder paths — it is not this machine's real seed list.
+path_rules:
+  - pattern: "ActuatorsAdjacentProject/**"
+    sensitivity: restricted
+  - pattern: "Journal/**"
+    sensitivity: restricted
+  - pattern: "Health/**"
+    sensitivity: restricted
+  - pattern: "Self-Model/**"
+    sensitivity: restricted

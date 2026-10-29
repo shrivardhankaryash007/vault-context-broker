@@ -1,0 +1,8 @@
+# Test-only sensitivity map matching tests/fixtures/sample_vault's fixture
+# notes. Mirrors the shape of sensitivity_map.example.yaml, not this
+# machine's real seed rules.
+path_rules:
+  - pattern: "ACME/**"
+    sensitivity: restricted
+  - pattern: "40-Thinking/Journal/**"
+    sensitivity: restricted

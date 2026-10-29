@@ -1,0 +1,123 @@
+{
+  "records": [
+    {
+      "schema_version": "cognitive-record-v0",
+      "record_id": "cognitive:019f577e-048a-7000-8000-000000000001",
+      "created_at": "2026-07-12T12:00:00Z",
+      "author": "deterministic",
+      "sensitivity": "open",
+      "release_class": "local_only",
+      "relations": [],
+      "kind": "evidence",
+      "evidence": {
+        "source_alias": "project-status",
+        "integrity_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    },
+    {
+      "schema_version": "cognitive-record-v0",
+      "record_id": "cognitive:019f577e-048a-7000-8000-000000000002",
+      "created_at": "2026-07-12T12:01:00Z",
+      "author": "deterministic",
+      "sensitivity": "open",
+      "release_class": "local_only",
+      "relations": [{"kind": "supported_by", "target_id": "cognitive:019f577e-048a-7000-8000-000000000001"}],
+      "kind": "fact",
+      "claim": "The next work item is bounded.",
+      "verification_method": "status-review"
+    },
+    {
+      "schema_version": "cognitive-record-v0",
+      "record_id": "cognitive:019f577e-048a-7000-8000-000000000003",
+      "created_at": "2026-07-12T12:02:00Z",
+      "author": "owner",
+      "sensitivity": "open",
+      "release_class": "local_only",
+      "relations": [{"kind": "derived_from", "target_id": "cognitive:019f577e-048a-7000-8000-000000000002"}],
+      "kind": "interpretation",
+      "claim": "A focused experiment is preferable.",
+      "alternatives": ["Start a broader implementation."]
+    },
+    {
+      "schema_version": "cognitive-record-v0",
+      "record_id": "cognitive:019f577e-048a-7000-8000-000000000004",
+      "created_at": "2026-07-12T12:03:00Z",
+      "author": "owner",
+      "sensitivity": "open",
+      "release_class": "local_only",
+      "relations": [{"kind": "supported_by", "target_id": "cognitive:019f577e-048a-7000-8000-000000000003"}],
+      "kind": "hypothesis",
+      "claim": "The bounded experiment will clarify the next action.",
+      "falsifiers": ["The result leaves the next action ambiguous."],
+      "observation_ends_at": "2026-07-13T12:00:00Z"
+    },
+    {
+      "schema_version": "cognitive-record-v0",
+      "record_id": "cognitive:019f577e-048a-7000-8000-000000000005",
+      "created_at": "2026-07-12T12:04:00Z",
+      "author": "model",
+      "sensitivity": "open",
+      "release_class": "local_only",
+      "relations": [{"kind": "derived_from", "target_id": "cognitive:019f577e-048a-7000-8000-000000000004"}],
+      "kind": "recommendation",
+      "question_or_decision": "Which bounded experiment should be chosen?",
+      "evidence_refs": ["cognitive:019f577e-048a-7000-8000-000000000001"],
+      "counterevidence_refs": [],
+      "rationale": "The evidence supports a small reversible step.",
+      "uncertainty": "The effort estimate has not been measured.",
+      "alternatives": ["Run the bounded experiment.", "Choose no action."],
+      "risks": ["The experiment may not resolve the question."],
+      "falsifiers": ["The result is not actionable."],
+      "validity_ends_at": "2026-07-13T12:00:00Z"
+    },
+    {
+      "schema_version": "cognitive-record-v0",
+      "record_id": "cognitive:019f577e-048a-7000-8000-000000000006",
+      "created_at": "2026-07-12T12:05:00Z",
+      "author": "owner",
+      "sensitivity": "open",
+      "release_class": "local_only",
+      "relations": [{"kind": "responds_to", "target_id": "cognitive:019f577e-048a-7000-8000-000000000005"}],
+      "kind": "decision",
+      "chosen_alternative": "Run the bounded experiment."
+    },
+    {
+      "schema_version": "cognitive-record-v0",
+      "record_id": "cognitive:019f577e-048a-7000-8000-000000000007",
+      "created_at": "2026-07-12T12:06:00Z",
+      "author": "trusted_local_adapter",
+      "sensitivity": "open",
+      "release_class": "local_only",
+      "relations": [{"kind": "implements", "target_id": "cognitive:019f577e-048a-7000-8000-000000000006"}],
+      "kind": "action",
+      "state": "completed",
+      "authority": "command_centre"
+    },
+    {
+      "schema_version": "cognitive-record-v0",
+      "record_id": "cognitive:019f577e-048a-7000-8000-000000000008",
+      "created_at": "2026-07-12T12:07:00Z",
+      "author": "owner",
+      "sensitivity": "open",
+      "release_class": "local_only",
+      "relations": [{"kind": "observes", "target_id": "cognitive:019f577e-048a-7000-8000-000000000007"}],
+      "kind": "observed_outcome",
+      "observation": "The experiment identified a concrete next action.",
+      "observed_at": "2026-07-12T12:07:00Z"
+    },
+    {
+      "schema_version": "cognitive-record-v0",
+      "record_id": "cognitive:019f577e-048a-7000-8000-000000000009",
+      "created_at": "2026-07-12T12:08:00Z",
+      "author": "owner",
+      "sensitivity": "open",
+      "release_class": "local_only",
+      "relations": [
+        {"kind": "supersedes", "target_id": "cognitive:019f577e-048a-7000-8000-000000000004"},
+        {"kind": "supported_by", "target_id": "cognitive:019f577e-048a-7000-8000-000000000008"}
+      ],
+      "kind": "correction",
+      "reason": "The outcome resolved the earlier uncertainty."
+    }
+  ]
+}

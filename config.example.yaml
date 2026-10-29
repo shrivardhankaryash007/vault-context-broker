@@ -1,0 +1,83 @@
+vault_root: "/absolute/path/to/your/ObsidianVault"
+index_path: "~/.vault-context-mcp/index.sqlite3"
+# Path-rule defaults for the sensitivity boundary (ADR 0036, D2). Not versioned
+# with this repo — see sensitivity_map.example.yaml for the seed-rule format.
+sensitivity_map_path: "~/.vault-context-mcp/sensitivity_map.yaml"
+retrieval:
+  default_mode: "standard"
+  max_chunks:
+    brief: 8
+    standard: 18
+    deep: 40
+    audit: 60
+  max_output_tokens:
+    brief: 1000
+    standard: 3000
+    deep: 8000
+    audit: 12000
+  canonical_boost: 2.5
+  project_boost: 2.0
+  recency_boost: 0.4
+  archive_penalty: 0.3
+  # Down-ranks chunks under any "_raw" path segment (e.g. Self-Model/_raw/**).
+  # Token-economy slice of ADR 0036 M1 — raw dumps are real but low-signal.
+  raw_penalty: 0.3
+canonical_files:
+  - "README.md"
+  - "00_CONTEXT_INDEX.md"
+  - "01_CURRENT_STATE.md"
+  - "02_ACTIVE_PROJECTS.md"
+  - "03_DECISIONS.md"
+  - "04_PERSONAL_RULES.md"
+  - "05_LLM_INSTRUCTIONS.md"
+  - "AGENTS.md"
+  - "CLAUDE.md"
+  - "CHATGPT.md"
+  - "PROJECT_STATE.md"
+  - "DECISIONS.md"
+  - "OPEN_QUESTIONS.md"
+  - "NEXT_ACTIONS.md"
+ignore_dirs:
+  - ".git"
+  - ".obsidian"
+  - "node_modules"
+  - ".trash"
+  - "archive"
+  - "*_backup_*"
+  - "backups"
+summarizer:
+  provider: "extractive"
+  ollama_base_url: "http://localhost:11434"
+  ollama_model: "llama3.1:8b"
+  timeout_seconds: 30
+librarian:
+  enabled: true
+  watch_interval_seconds: 30
+  debounce_seconds: 5
+  auto_refresh_index: true
+  audit_on_refresh: true
+  write_reports_to_vault: false
+  report_path: "~/.vault-context-mcp/librarian_report.md"
+  max_issues: 100
+  require_manual_approval_for_vault_writes: true
+session_log:
+  enabled: true
+  base_path: "Main_Vault/00_Inbox/Chats"
+  daily_notes_path: "Main_Vault/10-Daily"
+  append_daily_note: true
+  create_daily_note: false
+  refresh_index_after_write: true
+  capture_server_host: "127.0.0.1"
+  capture_server_port: 8765
+  max_transcript_chars: 200000
+  source_paths:
+    claude: "Main_Vault/00_Inbox/Chats/Claude"
+    chatgpt: "Main_Vault/00_Inbox/Chats/ChatGPT"
+    gemini: "Main_Vault/00_Inbox/Chats/Gemini"
+    codex: "Main_Vault/00_Inbox/Chats/Codex"
+    local: "Main_Vault/00_Inbox/Chats/Local"
+    other: "Main_Vault/00_Inbox/Chats/Other"
+security:
+  readonly: true
+  allow_outside_vault: false
+  log_tool_calls: true
